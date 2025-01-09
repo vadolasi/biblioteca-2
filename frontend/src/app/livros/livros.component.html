@@ -1,0 +1,24 @@
+<div class="container pt-5">
+  <input placeholder="Pesquisar" type="text" class="form-control" id="pesquisa" [formControl]="pesquisa" />
+  <button class="btn btn-primary mt-2" (click)="pesquisar()">Pesquisar</button>
+  <div class="d-flex justify-content-center" *ngIf="carregando; else livrosContainer">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <ng-template #livrosContainer>
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4 mt-3">
+      <div class="col" *ngFor="let livro of livros">
+        <a [routerLink]="['/comentarios', livro.id]">
+          <div class="card">
+            <img [src]="livro.capa" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-truncate">{{ livro.titulo }}</h5>
+              <p class="card-text">{{ livro.autor }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</div>

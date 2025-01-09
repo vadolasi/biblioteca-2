@@ -1,0 +1,24 @@
+<div class="min-vh-100 w-full d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" formControlName="senha">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="carregando">
+          <div class="spinner-border spinner-border-sm" role="status" *ngIf="carregando">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Login
+        </button>
+        <a routerLink="/cadastro" routerLinkActive="active" ariaCurrentWhenActive="page" class="btn btn-outline">Cadastro</a>
+      </form>
+    </div>
+  </div>
+</div>

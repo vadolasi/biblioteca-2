@@ -1,0 +1,32 @@
+<div class="min-vh-100 w-full d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Cadastro</h5>
+      <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" formControlName="senha">
+        </div>
+        <div class="mb-3">
+          <label for="confirmacaoSenha" class="form-label">Confirmar Senha</label>
+          <input type="password" class="form-control" id="confirmacaoSenha" formControlName="confirmacaoSenha">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="carregando">
+          <div class="spinner-border spinner-border-sm" role="status" *ngIf="carregando">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Cadastrar
+        </button>
+        <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" class="btn btn-outline">Login</a>
+      </form>
+    </div>
+  </div>
+</div>

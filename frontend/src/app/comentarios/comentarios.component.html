@@ -1,0 +1,48 @@
+<div class="min-vh-100 w-full d-flex justify-content-center align-items-center"
+  *ngIf="carregando; else comentariosContainer">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<ng-template #comentariosContainer>
+  <div class="w-50 mx-auto py-5">
+    <div class="row row-cols-1 row-cols-md-2">
+      <div class="col">
+        <img [src]="livro!.capa" class="img-fluid w-1/2 w-100" alt="...">
+      </div>
+      <div class="col">
+        <h5>{{ livro?.titulo }}</h5>
+        <p>{{ livro?.autor }}</p>
+      </div>
+    </div>
+    <h5 class="mt-5">Comentários</h5>
+    <div *ngIf="comentarios.length > 0; else semComentarios">
+      <div *ngFor="let comentario of comentarios">
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ comentario.nome }}</h5>
+            <p class="card-text">{{ comentario.comentario }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #semComentarios>
+      <p>Nenhum comentário</p>
+    </ng-template>
+    <div class="mt-2" *ngIf="usuario != null; else semUsuario">
+      <label for="comentario" class="form-label">Deixe seu comentário</label>
+      <textarea class="form-control" id="comentario" [formControl]="comentario"></textarea>
+      <button type="submit" class="btn btn-primary mt-2" [disabled]="carregandoComentarios" (click)="comentar()">
+        <div class="spinner-border spinner-border-sm" role="status" *ngIf="carregandoComentarios">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        Comentar
+      </button>
+    </div>
+  </div>
+  <ng-template #semUsuario>
+    <p>
+      <a routerLink="/login">Faça login</a> para comentar
+    </p>
+  </ng-template>
+</ng-template>
